@@ -1,32 +1,27 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+// axios
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
-require('./bootstrap');
+//  PrimeVue
+import PrimeVue from "primevue/config"
 
-window.Vue = require('vue').default;
+// PrimeFlex (css)
+import "primevue/resources/themes/saga-blue/theme.css" // テーマ
+import "primevue/resources/primevue.min.css" // ベース
+import "primeicons/primeicons.css" // アイコン
+import "primeflex/primeflex.css" // primeflex
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+// fontawsome
+import "@fortawesome/fontawesome-free/js/fontawesome";
+import "@fortawesome/fontawesome-free/js/brands";
+import "@fortawesome/fontawesome-free/js/solid";
+import "@fortawesome/fontawesome-free/js/regular";
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+import { createApp } from 'vue'
+import ExampleComponent from './components/ExampleComponent.vue';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-const app = new Vue({
-    el: '#app',
-});
+createApp({
+    components: {
+        ExampleComponent,
+    }
+}).mount('#app')
