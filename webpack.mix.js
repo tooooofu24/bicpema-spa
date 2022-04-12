@@ -13,12 +13,12 @@ require('laravel-mix-eslint');
  |
  */
 
- if (!mix.inProduction()) {
+if (!mix.inProduction()) {
     mix.eslint({
         fix: true,
         extensions: ['js', 'vue']
-      });
-    }
+    });
+}
 
 mix.js('resources/js/app.js', 'public/js')
     .vue()
