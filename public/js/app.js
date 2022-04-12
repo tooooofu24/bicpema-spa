@@ -25184,7 +25184,11 @@ var __default__ = {
       showSidebar: true
     };
   },
-  watch: {}
+  created: function created() {
+    if (window.innerHeight < 900) {
+      this.showSidebar = false;
+    }
+  }
 };
 
 
@@ -25717,7 +25721,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.router-view[data-v-f348271a] {\n  padding-top: var(--navbar-height);\n  padding-left: var(--sidebar-width);\n}\n.router-view.full-size[data-v-f348271a] {\n  padding-left: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.router-view[data-v-f348271a] {\n  margin-top: var(--navbar-height);\n  margin-left: var(--sidebar-width);\n}\n.router-view.full-size[data-v-f348271a] {\n  margin-left: 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -25741,7 +25745,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-bar[data-v-34a84aa4] {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  height: var(--navbar-height);\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 99;\n  padding: 0 28px;\n  background: var(--surface-card);\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.nav-bar[data-v-34a84aa4] {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  justify-content: space-between;\n  width: 100%;\n  height: var(--navbar-height);\n  position: fixed;\n  top: 0;\n  left: 0;\n  z-index: 99;\n  padding: 0 0.5rem;\n  background: var(--surface-card);\n  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

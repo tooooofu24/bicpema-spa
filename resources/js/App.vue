@@ -14,16 +14,20 @@ export default {
             showSidebar: true,
         };
     },
-    watch: {},
+    created() {
+        if (window.innerHeight < 900) {
+            this.showSidebar = false;
+        }
+    },
 };
 </script>
 
 <style scoped>
 .router-view {
-  padding-top: var(--navbar-height);
-  padding-left: var(--sidebar-width);
+  margin-top: var(--navbar-height);
+  margin-left: var(--sidebar-width);
 }
 .router-view.full-size {
-  padding-left: 0;
+  margin-left: 0;
 }
 </style>

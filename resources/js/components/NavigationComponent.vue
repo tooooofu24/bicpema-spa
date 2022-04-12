@@ -39,7 +39,7 @@ export default {
   top: 0;
   left: 0;
   z-index: 99;
-  padding: 0 28px;
+  padding: 0 0.5rem;
   background: var(--surface-card);
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
