@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 
+require('laravel-mix-eslint');
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,11 +13,18 @@ const mix = require('laravel-mix');
  |
  */
 
+ if (!mix.inProduction()) {
+    mix.eslint({
+        fix: true,
+        extensions: ['js', 'vue']
+      });
+    }
+
 mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
     
 // 本番環境ではバージョン付けによるキャッシュ対策を施す
 if (mix.inProduction()) {
-    mix.version()
+    mix.version();
 }
