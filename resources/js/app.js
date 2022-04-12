@@ -18,14 +18,12 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 
 import { createApp } from 'vue';
-import MainView from './views/MainView.vue';
+import App from './App.vue';
+import router from './router';
 
-const app = createApp({
-    components: {
-        MainView
-    }
-});
+const app = createApp(App);
 
+app.use(router);
 app.use(PrimeVue);
 app.use(VueAxios, axios);
 
