@@ -1,9 +1,9 @@
-// // axios
-// import axios from 'axios'
-// import VueAxios from 'vue-axios'
+// axios
+import axios from 'axios';
+import VueAxios from 'vue-axios';
 
-// //  PrimeVue
-// import PrimeVue from "primevue/config"
+//  PrimeVue
+import PrimeVue from "primevue/config";
 
 // PrimeFlex (css)
 import "primevue/resources/themes/saga-blue/theme.css"; // テーマ
@@ -20,8 +20,11 @@ import "@fortawesome/fontawesome-free/js/regular";
 import { createApp } from 'vue';
 import MainView from './MainView.vue';
 
-createApp({
+const app=createApp({
     components: {
         MainView
     }
 }).mount('#app');
+
+app.use(PrimeVue);
+app.use(VueAxios, axios);

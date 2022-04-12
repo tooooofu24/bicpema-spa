@@ -1,13 +1,11 @@
+<script setup>
+import Button from 'primevue/button';
+</script>
 <template>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8">
-        <div class="card">
-          <div class="card-header">MainView</div>
-
-          <div class="card-body">I'm an example component.</div>
-        </div>
-      </div>
+  <nav class="nav-bar shadow">
+    <div>BICPEMA</div>
+    <div>
+      <Button icon="pi pi-bars" class="p-button-text" />
     </div>
-  </div>
+  </nav>
 </template>
