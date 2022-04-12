@@ -1,11 +1,6 @@
 <script setup>
-import Button from 'primevue/button';
+import Navigation from './components/Navigation.vue';
 </script>
 <template>
-  <nav class="nav-bar shadow">
-    <div>BICPEMA</div>
-    <div>
-      <Button icon="pi pi-bars" class="p-button-text" />
-    </div>
-  </nav>
+  <Navigation></Navigation>
 </template>

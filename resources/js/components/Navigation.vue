@@ -1,3 +1,11 @@
+<script setup>
+import Button from 'primevue/button';
+</script>
 <template>
-  <div></div>
+  <nav class="nav-bar shadow">
+    <div>BICPEMA</div>
+    <div>
+      <Button icon="pi pi-bars" class="p-button-text" />
+    </div>
+  </nav>
 </template>
