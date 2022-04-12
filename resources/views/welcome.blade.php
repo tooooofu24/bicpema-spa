@@ -16,7 +16,7 @@
 
 <body>
     <div id="app">
-        <example-component></example-component>
+        <main-view></main-view>
     </div>
 
     <!-- Scripts -->

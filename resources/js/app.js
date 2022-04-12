@@ -18,10 +18,11 @@ import "@fortawesome/fontawesome-free/js/solid";
 import "@fortawesome/fontawesome-free/js/regular";
 
 import { createApp } from 'vue'
-import ExampleComponent from './components/ExampleComponent.vue';
+import MainView from './Main.vue';
 
 createApp({
     components: {
-        ExampleComponent,
+        MainView
+
     }
 }).mount('#app')
