@@ -1,13 +1,20 @@
+<script setup>
+import Button from 'primevue/button';
+</script>
+
 <template>
   <div class="sidebar">
     <ul class="sidebar-content">
-      <li><router-link to="/counselings" class="text-primary">カウンセリング</router-link></li>
-      <li><router-link to="/expenses" class="text-primary">経費</router-link></li>
-      <li><router-link to="/problems" class="text-primary">悩み</router-link></li>
-      <li><router-link to="/calendars" class="text-primary">カレンダー</router-link></li>
-      <li><router-link to="/admins" class="text-primary">管理者</router-link></li>
-      <li><router-link to="/users" class="text-primary">生徒一覧</router-link></li>
-      <li><router-link to="/tasks" class="text-primary">イベント一覧</router-link></li>
+      <li>
+        <router-link to="/" class="no-underline">
+          <Button class="p-button-text w-full"> <i class="fa-solid fa-house mr-3"></i> Home </Button>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/search" class="no-underline">
+          <Button class="p-button-text w-full"> <i class="fa-solid fa-magnifying-glass mr-3"></i> Search </Button>
+        </router-link>
+      </li>
     </ul>
   </div>
 </template>
@@ -27,9 +34,9 @@
 
 .sidebar-content {
   overflow-y: auto;
-  height: 100%;
   margin: 0;
-  margin-top: 1rem;
+  height: 100%;
+  padding: 1rem;
   list-style: none;
   padding-bottom: 120px;
 }

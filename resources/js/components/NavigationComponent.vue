@@ -4,16 +4,29 @@ import Button from 'primevue/button';
 <template>
   <nav class="nav-bar shadow">
     <div>
-      <Button icon="pi pi-bars" class="p-button-text" />
+      <Button class="p-button-text" @click="toggleSidebar()">
+        <i class="fa-solid fa-bars fa-lg"></i>
+      </Button>
     </div>
     <div>
       <span class="text-primary font-bold">BICPEMA</span>
     </div>
     <div>
-      <Button icon="pi pi-user" class="p-button-text" />
+      <Button class="p-button-text"> <i class="fa-solid fa-user-large fa-lg"></i> </Button>
     </div>
   </nav>
 </template>
+<script>
+export default {
+    emits: ['toggle-sidebar'],
+    methods: {
+        toggleSidebar() {
+            this.$emit('toggle-sidebar');
+        },
+    },
+};
+</script>
+
 <style scoped>
 .nav-bar {
   display: flex;
@@ -28,7 +41,7 @@ import Button from 'primevue/button';
   z-index: 99;
   padding: 0 28px;
   background: var(--surface-card);
-  box-shadow: rgb(0 0 0 / 3%) 0px 4px 10px, rgb(0 0 0 / 6%) 0px 0px 2px, rgb(0 0 0 / 12%) 0px 2px 6px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
 }
 </style>
 

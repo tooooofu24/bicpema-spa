@@ -3,12 +3,27 @@ import Navigation from './components/NavigationComponent.vue';
 import SidebarComponent from './components/SidebarComponent.vue';
 </script>
 <template>
-  <Navigation></Navigation>
-  <SidebarComponent></SidebarComponent>
-  <router-view class="router-view"></router-view>
+  <Navigation @toggle-sidebar="showSidebar = !showSidebar"></Navigation>
+  <SidebarComponent v-show="showSidebar"></SidebarComponent>
+  <router-view :class="{ 'router-view': true, 'full-size': !showSidebar }"></router-view>
 </template>
+<script>
+export default {
+    data() {
+        return {
+            showSidebar: true,
+        };
+    },
+    watch: {},
+};
+</script>
+
 <style scoped>
 .router-view {
-  padding: var(--navbar-height) 0 0 var(--sidebar-width);
+  padding-top: var(--navbar-height);
+  padding-left: var(--sidebar-width);
+}
+.router-view.full-size {
+  padding-left: 0;
 }
 </style>
