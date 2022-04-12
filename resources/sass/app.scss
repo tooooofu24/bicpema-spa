@@ -15,15 +15,6 @@ body {
     top: 0;
 }
 
-.nav-bar{
-    position: relative;
-    display: flex;
-    flex-wrap: wrap; // allow us to do the line break for collapsing content
-    align-items: center;
-    justify-content: space-between; // space out brand from logo
-    padding: 0.8rem;
-}
-
 .shadow {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
 }
