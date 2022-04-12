@@ -9,6 +9,6 @@ import SidebarComponent from './components/SidebarComponent.vue';
 </template>
 <style scoped>
 .router-view {
-  padding: 0 0 0 200px;
+  padding: var(--navbar-height) 0 0 var(--sidebar-width);
 }
 </style>

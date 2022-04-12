@@ -1,5 +1,11 @@
+:root {
+  --navbar-height: 3.5rem;
+  --sidebar-width: 250px;
+}
+
 body {
   margin: 0;
+  background-color: #f8fafc;
 }
 
 .fixed-top {
