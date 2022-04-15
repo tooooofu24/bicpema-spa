@@ -22,8 +22,6 @@
     <!-- Scripts -->
     <script src="{{ mix('/js/app.js') }}" defer></script>
 
-    <!-- p5js -->
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
 </body>
 
 </html>

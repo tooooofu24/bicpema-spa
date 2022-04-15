@@ -15,7 +15,7 @@ class PostFactory extends Factory
     {
         return [
             'title' => PostFactoryData::getFakeTitle(),
-            'file_url' => $this->faker->url(),
+            'file_url' => $this->faker->randomElement(PostFactoryData::FILE_URLS),
             'thumbnail_url' => $this->faker->randomElement(PostFactoryData::IMAGEURLS),
             'share_link_url' => 'https://github.com/tooooofu24',
             'comment' => $this->faker->realText(mt_rand(10, 100)),

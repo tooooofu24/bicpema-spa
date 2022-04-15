@@ -41,6 +41,15 @@ class PostFactoryData
         'https://images.unsplash.com/photo-1649899019044-445d88bc0a0f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1032&q=80',
     ];
 
+    const FILE_URLS = [
+        'https://dl.dropboxusercontent.com/s/18p99gcdef6wifn/doppler.js',
+        'https://dl.dropboxusercontent.com/s/18p99gcdef6wifn/doppler.js',
+        'https://dl.dropboxusercontent.com/s/51ete0ydx3a3d8l/RGB.js',
+        'https://dl.dropboxusercontent.com/s/l8qesblshicu88t/spring.js',
+        'https://dl.dropboxusercontent.com/s/gldk7bfd5sltbt1/wave_interference.js',
+        'https://dl.dropboxusercontent.com/s/hvlp603q5tc8pub/pendulum.js',
+    ];
+
     const ARENAMES = [
         "風やゴムの働き",
         "振り子の運動",

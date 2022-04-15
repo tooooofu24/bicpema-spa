@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Iframe\IframeController;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('iframe/posts/{id}', IframeController::class);
 
 Route::get('/{any}', function () {
     return view('app');
