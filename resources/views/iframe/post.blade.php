@@ -18,9 +18,5 @@
 <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
 <!-- <script src="{{ $post->file_url }}"></script> -->
 <script src="/js/test.js"></script>
-<script>
-    console.log(document.body.clientWidth);
-    console.log(document.body.clientHeight);
-</script>
 
 </html>
