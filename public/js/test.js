@@ -175,3 +175,6 @@ class SOUND {
     }
 
 }
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}

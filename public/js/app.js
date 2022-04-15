@@ -25744,8 +25744,9 @@ var _hoisted_1 = {
 
 var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "iframe-wrap w-full h-full"
+    "class": "h-full flex align-items-center justify-content-center"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+    id: "canvas",
     title: "p5.js demo",
     src: "http://127.0.0.1:8000/iframe/posts/1"
   }, " ")], -1
@@ -26149,7 +26150,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.iframe-wrap[data-v-6f1bc104] {\n  position: relative;\n}\n.iframe-wrap iframe[data-v-6f1bc104] {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\niframe[data-v-6f1bc104] {\n  height: 10rem;\n  width: 10rem;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

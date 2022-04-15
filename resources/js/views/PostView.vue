@@ -1,7 +1,7 @@
 <template>
   <main class="h-full">
-    <div class="iframe-wrap w-full h-full">
-      <iframe title="p5.js demo" src="http://127.0.0.1:8000/iframe/posts/1"> </iframe>
+    <div class="h-full flex align-items-center justify-content-center">
+      <iframe id="canvas" title="p5.js demo" src="http://127.0.0.1:8000/iframe/posts/1"> </iframe>
     </div>
     <div id="post-script" class="hidden"></div>
   </main>
@@ -11,15 +11,8 @@
 </script>
 
 <style scoped>
-.iframe-wrap {
-  position: relative;
-}
-
-.iframe-wrap iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+iframe {
+  height: 10rem;
+  width: 10rem;
 }
 </style>
