@@ -19,6 +19,6 @@ export default {
 
 <style scoped>
 .router-view {
-  /* margin-top: var(--navbar-height); */
+  padding-top: var(--navbar-height);
 }
 </style>
