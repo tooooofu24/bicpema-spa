@@ -25748,7 +25748,7 @@ var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
     id: "canvas",
     title: "p5.js demo",
-    src: "http://127.0.0.1:8000/iframe/posts/1"
+    src: "/iframe/posts/1"
   }, " ")], -1
   /* HOISTED */
   );
