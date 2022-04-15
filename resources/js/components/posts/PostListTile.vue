@@ -46,13 +46,13 @@ export default {
   width: 100%;
   height: 100%;
 }
+.post-thumbnail.active {
+  transform: translate(-0.5rem, -0.5rem);
+}
 .post-description {
   color: var(--surface-800);
 }
 .post-description.active {
   color: var(--primary-color);
-}
-.post-thumbnail.active {
-  transform: translate(-0.5rem, -0.5rem);
 }
 </style>

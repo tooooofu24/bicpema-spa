@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from './views/HomeView.vue';
 import PostListView from './views/PostListView.vue';
+import PostView from './views/PostView.vue';
 
 const routes = [
     {
@@ -10,8 +11,13 @@ const routes = [
     },
     {
         path: '/posts',
-        name: 'Posts',
+        name: 'PostList',
         component: PostListView
+    },
+    {
+        path: '/test',
+        name: 'Post',
+        component: PostView
     }
 ];
 
