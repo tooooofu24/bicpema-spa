@@ -7,12 +7,12 @@ import Button from 'primevue/button';
     <ul class="sidebar-content">
       <li>
         <router-link to="/" class="no-underline">
-          <Button class="p-button-text w-full"> <i class="fa-solid fa-house mr-3"></i> Home </Button>
+          <Button class="p-button-text w-full"> <i class="fa-solid fa-house"></i> Home </Button>
         </router-link>
       </li>
       <li>
-        <router-link to="/search" class="no-underline">
-          <Button class="p-button-text w-full"> <i class="fa-solid fa-magnifying-glass mr-3"></i> Search </Button>
+        <router-link to="/posts" class="no-underline">
+          <Button class="p-button-text w-full"> <i class="fa-solid fa-flask"></i> Posts </Button>
         </router-link>
       </li>
     </ul>
@@ -39,5 +39,9 @@ import Button from 'primevue/button';
   padding: 1rem;
   list-style: none;
   padding-bottom: 120px;
+}
+
+svg {
+  width: 2.5rem;
 }
 </style>

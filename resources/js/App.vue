@@ -5,29 +5,20 @@ import SidebarComponent from './components/SidebarComponent.vue';
 <template>
   <Navigation @toggle-sidebar="showSidebar = !showSidebar"></Navigation>
   <SidebarComponent v-show="showSidebar"></SidebarComponent>
-  <router-view :class="{ 'router-view': true, 'full-size': !showSidebar }"></router-view>
+  <router-view class="router-view"></router-view>
 </template>
 <script>
 export default {
     data() {
         return {
-            showSidebar: true,
+            showSidebar: false,
         };
-    },
-    created() {
-        if (window.innerHeight < 900) {
-            this.showSidebar = false;
-        }
     },
 };
 </script>
 
 <style scoped>
 .router-view {
-  margin-top: var(--navbar-height);
-  margin-left: var(--sidebar-width);
-}
-.router-view.full-size {
-  margin-left: 0;
+  /* margin-top: var(--navbar-height); */
 }
 </style>
