@@ -14,10 +14,10 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->realText(mt_rand(10, 20)),
+            'title' => PostFactoryData::getFakeTitle(),
             'file_url' => $this->faker->url(),
-            'thumbnail_url' => $this->faker->imageUrl($width = 640, $height = 480),
-            'share_link_url' => $this->faker->url(),
+            'thumbnail_url' => $this->faker->randomElement(PostFactoryData::IMAGEURLS),
+            'share_link_url' => 'https://github.com/tooooofu24',
             'comment' => $this->faker->realText(mt_rand(10, 100)),
             'area_id' => mt_rand(1, 90),
             'user_id' => mt_rand(1, 20),

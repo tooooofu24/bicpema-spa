@@ -24,7 +24,4 @@ mix.sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/app.js', 'public/js')
     .vue();
 
-// 本番環境ではバージョン付けによるキャッシュ対策を施す
-if (mix.inProduction()) {
-    mix.version();
-}
+mix.version();
