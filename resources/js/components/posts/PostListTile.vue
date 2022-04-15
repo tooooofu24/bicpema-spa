@@ -1,11 +1,18 @@
 <template>
   <div>
-    <div class="post-card">
-      <img :src="post.thumbnail_url" :alt="post.title" class="post-thumbnail" />
-    </div>
-    <div class="font-bold text-overflow-ellipsis white-space-nowrap overflow-hidden text-800 mt-1">
-      {{ post.title }}
-    </div>
+    <router-link to="/posts" class="no-underline" @mouseover="active = true" @mouseleave="active = false">
+      <div class="post-tile">
+        <img :src="post.thumbnail_url" :alt="post.title" :class="['post-thumbnail', { active: active }]" />
+      </div>
+      <div
+        :class="[
+          'font-bold text-overflow-ellipsis white-space-nowrap overflow-hidden mt-1 post-description',
+          { active: active },
+        ]"
+      >
+        {{ post.title }}
+      </div>
+    </router-link>
   </div>
 </template>
 <script>
@@ -16,11 +23,17 @@ export default {
             required: true,
         },
     },
+    data() {
+        return {
+            active: false,
+        };
+    },
 };
 </script>
 
 <style scoped>
-.post-card {
+.post-tile {
+  background-color: #3a302d;
   aspect-ratio: 16 / 9;
   position: relative;
   width: 100%;
@@ -32,5 +45,14 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
+}
+.post-description {
+  color: var(--surface-800);
+}
+.post-description.active {
+  color: var(--primary-color);
+}
+.post-thumbnail.active {
+  transform: translate(-0.5rem, -0.5rem);
 }
 </style>
