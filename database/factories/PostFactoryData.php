@@ -42,12 +42,21 @@ class PostFactoryData
     ];
 
     const FILE_URLS = [
-        'https://dl.dropboxusercontent.com/s/18p99gcdef6wifn/doppler.js',
-        'https://dl.dropboxusercontent.com/s/18p99gcdef6wifn/doppler.js',
-        'https://dl.dropboxusercontent.com/s/51ete0ydx3a3d8l/RGB.js',
-        'https://dl.dropboxusercontent.com/s/l8qesblshicu88t/spring.js',
-        'https://dl.dropboxusercontent.com/s/gldk7bfd5sltbt1/wave_interference.js',
-        'https://dl.dropboxusercontent.com/s/hvlp603q5tc8pub/pendulum.js',
+        // 'https://dl.dropboxusercontent.com/s/18p99gcdef6wifn/doppler.js',
+        // 'https://dl.dropboxusercontent.com/s/18p99gcdef6wifn/doppler.js',
+        // 'https://dl.dropboxusercontent.com/s/51ete0ydx3a3d8l/RGB.js',
+        // 'https://dl.dropboxusercontent.com/s/l8qesblshicu88t/spring.js',
+        // 'https://dl.dropboxusercontent.com/s/gldk7bfd5sltbt1/wave_interference.js',
+        // 'https://dl.dropboxusercontent.com/s/hvlp603q5tc8pub/pendulum.js',
+        'https://ms2n-xxx.com/js/CircularHelloCurves.js',
+        'https://ms2n-xxx.com/js/CurlVoronoi.js',
+        'https://ms2n-xxx.com/js/light.js',
+        'https://ms2n-xxx.com/js/metamon.js',
+        'https://ms2n-xxx.com/js/PixelWormHole.js',
+        'https://ms2n-xxx.com/js/planets.js',
+        'https://ms2n-xxx.com/js/robot.js',
+        'https://ms2n-xxx.com/js/shodo.js',
+        'https://ms2n-xxx.com/js/tiger.js',
     ];
 
     const ARENAMES = [

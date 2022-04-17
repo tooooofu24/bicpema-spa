@@ -1,6 +1,11 @@
 <template>
   <div>
-    <router-link to="/test" class="no-underline" @mouseover="active = true" @mouseleave="active = false">
+    <router-link
+      :to="{ name: 'Post', params: { id: post.id } }"
+      class="no-underline"
+      @mouseover="active = true"
+      @mouseleave="active = false"
+    >
       <div class="post-tile">
         <img :src="post.thumbnail_url" :alt="post.title" :class="['post-thumbnail', { active: active }]" />
       </div>

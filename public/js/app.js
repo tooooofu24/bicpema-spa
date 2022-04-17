@@ -25613,7 +25613,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/test",
+    to: {
+      name: 'Post',
+      params: {
+        id: $props.post.id
+      }
+    },
     "class": "no-underline",
     onMouseover: _cache[0] || (_cache[0] = function ($event) {
       return $data.active = true;
@@ -25642,7 +25647,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]);
+  }, 8
+  /* PROPS */
+  , ["to"])]);
 }
 
 /***/ }),
@@ -25782,18 +25789,16 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "h-full flex align-items-center justify-content-center"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
-  title: "p5.js demo",
-  src: "/iframe/posts/1",
-  "class": "h-full w-full"
-}, " ", -1
-/* HOISTED */
-);
-
-var _hoisted_3 = [_hoisted_2];
+var _hoisted_2 = ["src"];
 function render(_ctx, _cache) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", _hoisted_1, _hoisted_3);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("iframe", {
+    title: "p5.js demo",
+    src: '/iframe/posts/' + _ctx.$route.params.id,
+    "class": "h-full w-full",
+    frameborder: "0"
+  }, "\n    ", 8
+  /* PROPS */
+  , _hoisted_2)]);
 }
 
 /***/ }),
@@ -25884,7 +25889,7 @@ var routes = [{
   name: 'PostList',
   component: _views_PostListView_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
 }, {
-  path: '/test',
+  path: '/posts/:id',
   name: 'Post',
   component: _views_PostView_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
 }];
