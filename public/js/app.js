@@ -25342,27 +25342,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _components_posts_PostListTile_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/posts/PostListTile.vue */ "./resources/js/components/posts/PostListTile.vue");
+/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.esm.js");
 var __default__ = {
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      page: 1
     };
   },
-  mounted: function mounted() {
-    var _this = this;
+  methods: {
+    infiniteHandler: function infiniteHandler($state) {
+      var _this = this;
 
-    this.axios.get('/api/posts').then(function (response) {
-      _this.posts = response.data.data;
-    });
+      this.axios.get('/api/posts', {
+        params: {
+          page: this.page
+        }
+      }).then(function (response) {
+        _this.posts = _this.posts.concat(response.data.data);
+        var lastPage = response.data.meta.last_page;
+
+        if (lastPage > _this.page) {
+          _this.page += 1;
+          $state.loaded();
+        } else {
+          $state.complete();
+        }
+      });
+    }
   }
 };
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/Object.assign(__default__, {
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var __returned__ = {
-      PostListTile: _components_posts_PostListTile_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+      PostListTile: _components_posts_PostListTile_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
+      InfiniteLoading: vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -25702,8 +25720,21 @@ var _hoisted_1 = {
   "class": "px-3"
 };
 var _hoisted_2 = {
-  "class": "grid wrap py-4"
+  "class": "grid wrap pt-4"
 };
+
+var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, null, -1
+  /* HOISTED */
+  );
+});
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("main", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.posts, function (post) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["PostListTile"], {
@@ -25715,7 +25746,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["post"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]);
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["InfiniteLoading"], {
+    "class": "w-full",
+    onInfinite: $options.infiniteHandler
+  }, {
+    "no-more": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_3];
+    }),
+    "no-results": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_4];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["onInfinite"])]);
 }
 
 /***/ }),
@@ -28882,6 +28928,783 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* module decorator */ module = __webpack_require__.hmd(module);
 function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function plugin(e,n){if(!e.vueAxiosInstalled){var o=isAxiosLike(n)?migrateToMultipleInstances(n):n;if(isValidConfig(o)){var t=getVueVersion(e);if(t){var i=t<3?registerOnVue2:registerOnVue3;Object.keys(o).forEach((function(n){i(e,n,o[n])})),e.vueAxiosInstalled=!0}else console.error("[vue-axios] unknown Vue version")}else console.error("[vue-axios] configuration is invalid, expected options are either <axios_instance> or { <registration_key>: <axios_instance> }")}}function registerOnVue2(e,n,o){Object.defineProperty(e.prototype,n,{get:function(){return o}}),e[n]=o}function registerOnVue3(e,n,o){e.config.globalProperties[n]=o,e[n]=o}function isAxiosLike(e){return e&&"function"==typeof e.get&&"function"==typeof e.post}function migrateToMultipleInstances(e){return{axios:e,$http:e}}function isValidConfig(e){return"object"===_typeof(e)&&Object.keys(e).every((function(n){return isAxiosLike(e[n])}))}function getVueVersion(e){return e&&e.version&&Number(e.version.split(".")[0])}"object"==("undefined"==typeof exports?"undefined":_typeof(exports))?module.exports=plugin:"function"==typeof define&&__webpack_require__.amdO?define([],(function(){return plugin})):window.Vue&&window.axios&&window.Vue.use&&Vue.use(plugin,window.axios);
+
+/***/ }),
+
+/***/ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.esm.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/vue-infinite-loading/dist/vue-infinite-loading.esm.js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+function E () {
+  // Keep this empty so it's easier to inherit from
+  // (via https://github.com/lipsmack from https://github.com/scottcorgan/tiny-emitter/issues/3)
+}
+
+E.prototype = {
+  on: function (name, callback, ctx) {
+    var e = this.e || (this.e = {});
+
+    (e[name] || (e[name] = [])).push({
+      fn: callback,
+      ctx: ctx
+    });
+
+    return this;
+  },
+
+  once: function (name, callback, ctx) {
+    var self = this;
+    function listener () {
+      self.off(name, listener);
+      callback.apply(ctx, arguments);
+    }
+    listener._ = callback;
+    return this.on(name, listener, ctx);
+  },
+
+  emit: function (name) {
+    var data = [].slice.call(arguments, 1);
+    var evtArr = ((this.e || (this.e = {}))[name] || []).slice();
+    var i = 0;
+    var len = evtArr.length;
+
+    for (i; i < len; i++) {
+      evtArr[i].fn.apply(evtArr[i].ctx, data);
+    }
+
+    return this;
+  },
+
+  off: function (name, callback) {
+    var e = this.e || (this.e = {});
+    var evts = e[name];
+    var liveEvents = [];
+
+    if (evts && callback) {
+      for (var i = 0, len = evts.length; i < len; i++) {
+        if (evts[i].fn !== callback && evts[i].fn._ !== callback)
+          liveEvents.push(evts[i]);
+      }
+    }
+
+    // Remove event from queue to prevent memory leak
+    // Suggested by https://github.com/lazd
+    // Ref: https://github.com/scottcorgan/tiny-emitter/commit/c6ebfaa9bc973b33d110a84a307742b7cf94c953#commitcomment-5024910
+
+    (liveEvents.length)
+      ? e[name] = liveEvents
+      : delete e[name];
+
+    return this;
+  }
+};
+
+var _tinyEmitter_2_1_0_tinyEmitter = E;
+var TinyEmitter = E;
+_tinyEmitter_2_1_0_tinyEmitter.TinyEmitter = TinyEmitter;
+
+var instance = new _tinyEmitter_2_1_0_tinyEmitter();
+
+var eventHub = {
+  $on: (...args) => instance.on(...args),
+  $once: (...args) => instance.once(...args),
+  $off: (...args) => instance.off(...args),
+  $emit: (...args) => instance.emit(...args)
+};
+
+const SPINNERS = ['bubbles', 'circles', 'spiral', 'wavedots'];
+var script$1 = /* #__PURE__ */(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'Spinner',
+  props: ['spinner'],
+  computed: {
+    spinnerView() {
+      return SPINNERS[this.spinner || ''] || 'default' // fallback to spinner of config
+      ;
+    }
+
+  }
+});
+
+const _withId$1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("data-v-10593c59");
+
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-10593c59");
+
+const _hoisted_1$1 = {
+  key: 0,
+  class: "loading-default"
+};
+const _hoisted_2$1 = {
+  key: 1,
+  class: "loading-bubbles"
+};
+const _hoisted_3 = {
+  key: 2,
+  class: "loading-circles"
+};
+const _hoisted_4 = {
+  key: 3,
+  class: "loading-spiral"
+};
+const _hoisted_5 = {
+  key: 4,
+  class: "loading-wave-dots"
+};
+
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
+
+const render$1 = /*#__PURE__*/_withId$1((_ctx, _cache, $props, $setup, $data, $options) => {
+  return _ctx.spinnerView === 'default' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("i", _hoisted_1$1)) : _ctx.spinnerView === 'bubbles' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_2$1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(8, x => {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      class: "bubble-item",
+      key: x
+    });
+  }), 64))])) : _ctx.spinnerView === 'circles' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(8, x => {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      class: "circle-item",
+      key: x
+    });
+  }), 64))])) : _ctx.spinnerView === 'spiral' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("i", _hoisted_4)) : _ctx.spinnerView === 'wavedots' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(5, x => {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+      class: "wave-item",
+      key: x
+    });
+  }), 64))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("", true);
+});
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z$1 = ".loading-wave-dots[data-v-10593c59] {\n  position: relative;\n}\n.loading-wave-dots[data-v-10593c59] .wave-item {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  display: inline-block;\n  margin-top: -8px/2;\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  animation: loading-wave-dots-10593c59 linear 2.8s infinite;\n}\n.loading-wave-dots[data-v-10593c59] .wave-item:first-child {\n  margin-left: -8px/2 + -32px;\n}\n.loading-wave-dots[data-v-10593c59] .wave-item:nth-child(2) {\n  margin-left: -8px/2 + -16px;\n  animation-delay: 0.14s;\n}\n.loading-wave-dots[data-v-10593c59] .wave-item:nth-child(3) {\n  margin-left: -8px/2;\n  animation-delay: 0.28s;\n}\n.loading-wave-dots[data-v-10593c59] .wave-item:nth-child(4) {\n  margin-left: -8px/2 + 16px;\n  animation-delay: 0.42s;\n}\n.loading-wave-dots[data-v-10593c59] .wave-item:last-child {\n  margin-left: -8px/2 + 32px;\n  animation-delay: 0.56s;\n}\n@keyframes loading-wave-dots-10593c59 {\n0% {\n    transform: translateY(0);\n    background: #bbb;\n}\n10% {\n    transform: translateY(-6px);\n    background: #999;\n}\n20% {\n    transform: translateY(0);\n    background: #bbb;\n}\n100% {\n    transform: translateY(0);\n    background: #bbb;\n}\n}\n.loading-circles[data-v-10593c59] .circle-item {\n  width: 5px;\n  height: 5px;\n  animation: loading-circles-10593c59 linear 0.75s infinite;\n}\n.loading-circles[data-v-10593c59] .circle-item:first-child {\n  margin-top: -5px/2 + -12px;\n  margin-left: -5px/2;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(2) {\n  margin-top: -5px/2 + -8.76px;\n  margin-left: -5px/2 + 8.76px;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(3) {\n  margin-top: -5px/2;\n  margin-left: -5px/2 + 12px;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(4) {\n  margin-top: -5px/2 + 8.76px;\n  margin-left: -5px/2 + 8.76px;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(5) {\n  margin-top: -5px/2 + 12px;\n  margin-left: -5px/2;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(6) {\n  margin-top: -5px/2 + 8.76px;\n  margin-left: -5px/2 + -8.76px;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(7) {\n  margin-top: -5px/2;\n  margin-left: -5px/2 + -12px;\n}\n.loading-circles[data-v-10593c59] .circle-item:last-child {\n  margin-top: -5px/2 + -8.76px;\n  margin-left: -5px/2 + -8.76px;\n}\n@keyframes loading-circles-10593c59 {\n0% {\n    background: #dfdfdf;\n}\n90% {\n    background: #505050;\n}\n100% {\n    background: #dfdfdf;\n}\n}\n.loading-bubbles[data-v-10593c59] .bubble-item {\n  background: #666;\n  animation: loading-bubbles-10593c59 linear 0.75s infinite;\n}\n.loading-bubbles[data-v-10593c59] .bubble-item:first-child {\n  margin-top: -1px/2 + -12px;\n  margin-left: -1px/2;\n}\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(2) {\n  margin-top: -1px/2 + -8.76px;\n  margin-left: -1px/2 + 8.76px;\n}\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(3) {\n  margin-top: -1px/2;\n  margin-left: -1px/2 + 12px;\n}\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(4) {\n  margin-top: -1px/2 + 8.76px;\n  margin-left: -1px/2 + 8.76px;\n}\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(5) {\n  margin-top: -1px/2 + 12px;\n  margin-left: -1px/2;\n}\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(6) {\n  margin-top: -1px/2 + 8.76px;\n  margin-left: -1px/2 + -8.76px;\n}\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(7) {\n  margin-top: -1px/2;\n  margin-left: -1px/2 + -12px;\n}\n.loading-bubbles[data-v-10593c59] .bubble-item:last-child {\n  margin-top: -1px/2 + -8.76px;\n  margin-left: -1px/2 + -8.76px;\n}\n@keyframes loading-bubbles-10593c59 {\n0% {\n    width: 1px;\n    height: 1px;\n    box-shadow: 0 0 0 3px #666;\n}\n90% {\n    width: 1px;\n    height: 1px;\n    box-shadow: 0 0 0 0 #666;\n}\n100% {\n    width: 1px;\n    height: 1px;\n    box-shadow: 0 0 0 3px #666;\n}\n}\n.loading-default[data-v-10593c59] {\n  position: relative;\n  border: 1px solid #999;\n  animation: loading-rotating-10593c59 ease 1.5s infinite;\n}\n.loading-default[data-v-10593c59]:before {\n  content: '';\n  position: absolute;\n  display: block;\n  top: 0;\n  left: 50%;\n  margin-top: -6px/2;\n  margin-left: -6px/2;\n  width: 6px;\n  height: 6px;\n  background-color: #999;\n  border-radius: 50%;\n}\n.loading-spiral[data-v-10593c59] {\n  border: 2px solid #777;\n  border-right-color: transparent;\n  animation: loading-rotating-10593c59 linear 0.85s infinite;\n}\n@keyframes loading-rotating-10593c59 {\n0% {\n    transform: rotate(0);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n.loading-bubbles[data-v-10593c59],\n.loading-circles[data-v-10593c59] {\n  position: relative;\n}\n.loading-circles[data-v-10593c59] .circle-item,\n.loading-bubbles[data-v-10593c59] .bubble-item {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  display: inline-block;\n  border-radius: 50%;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(2),\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(2) {\n  animation-delay: 0.093s;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(3),\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(3) {\n  animation-delay: 0.186s;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(4),\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(4) {\n  animation-delay: 0.279s;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(5),\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(5) {\n  animation-delay: 0.372s;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(6),\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(6) {\n  animation-delay: 0.465s;\n}\n.loading-circles[data-v-10593c59] .circle-item:nth-child(7),\n.loading-bubbles[data-v-10593c59] .bubble-item:nth-child(7) {\n  animation-delay: 0.558s;\n}\n.loading-circles[data-v-10593c59] .circle-item:last-child,\n.loading-bubbles[data-v-10593c59] .bubble-item:last-child {\n  animation-delay: 0.651s;\n}\n";
+styleInject(css_248z$1);
+
+script$1.render = render$1;
+script$1.__scopeId = "data-v-10593c59";
+
+/*
+ * default property values
+ */
+const props = {
+  // the default spinner type
+  spinner: 'default',
+  // the default critical distance
+  distance: 100,
+  // the default force use infinite wrapper flag
+  forceUseInfiniteWrapper: false
+};
+/**
+ * default system settings
+ */
+
+const system = {
+  // the default throttle space of time
+  throttleLimit: 50,
+  // the timeout for check infinite loop, unit: ms
+  loopCheckTimeout: 1000,
+  // the max allowed number of continuous calls, unit: ms
+  loopCheckMaxCalls: 10
+};
+/**
+ * default slot messages
+ */
+
+const slots = {
+  noResults: 'No results :(',
+  noMore: 'No more data :)',
+  error: 'Opps, something went wrong :(',
+  errorBtnText: 'Retry',
+  spinner: ''
+};
+/**
+ * the 3rd argument for event bundler
+ * @see https://github.com/WICG/EventListenerOptions/blob/gh-pages/explainer.md
+ */
+
+const evt3rdArg = (() => {
+  let result = false;
+
+  try {
+    const arg = Object.defineProperty({}, 'passive', {
+      get() {
+        result = {
+          passive: true
+        };
+        return true;
+      }
+
+    });
+    window.addEventListener('testpassive', arg, arg);
+    window.remove('testpassive', arg, arg);
+  } catch (e) {
+    /* */
+  }
+
+  return result;
+})();
+/**
+ * warning messages
+ */
+
+const WARNINGS = {
+  INFINITE_EVENT: '`:on-infinite` property will be deprecated soon, please use `@infinite` event instead.'
+};
+/**
+ * error messages
+ */
+
+const ERRORS = {
+  INFINITE_LOOP: [`executed the callback function more than ${system.loopCheckMaxCalls} times for a short time, it looks like searched a wrong scroll wrapper that doest not has fixed height or maximum height, please check it. If you want to force to set a element as scroll wrapper ranther than automatic searching, you can do this:`, `
+<!-- add a special attribute for the real scroll wrapper -->
+<div infinite-wrapper>
+  ...
+  <!-- set force-use-infinite-wrapper -->
+  <infinite-loading force-use-infinite-wrapper></infinite-loading>
+</div>
+or
+<div class="infinite-wrapper">
+  ...
+  <!-- set force-use-infinite-wrapper as css selector of the real scroll wrapper -->
+  <infinite-loading force-use-infinite-wrapper=".infinite-wrapper"></infinite-loading>
+</div>
+    `, 'more details: https://github.com/PeachScript/vue-infinite-loading/issues/55#issuecomment-316934169'].join('\n')
+};
+/**
+ * plugin status constants
+ */
+
+const STATUS = {
+  READY: 0,
+  LOADING: 1,
+  COMPLETE: 2,
+  ERROR: 3
+};
+/**
+ * default slot styles
+ */
+
+const SLOT_STYLES = {
+  color: '#666',
+  fontSize: '14px',
+  padding: '10px 0'
+};
+var config = {
+  mode: 'development',
+  props,
+  system,
+  slots,
+  WARNINGS,
+  ERRORS,
+  STATUS
+};
+
+/* eslint-disable no-console */
+/**
+ * console warning in production
+ * @param {String} msg console content
+ */
+
+function warn(msg) {
+  /* istanbul ignore else */
+  {
+    console.warn(`[Vue-infinite-loading warn]: ${msg}`);
+  }
+}
+/**
+ * console error
+ * @param {String} msg console content
+ */
+
+function error(msg) {
+  console.error(`[Vue-infinite-loading error]: ${msg}`);
+}
+const throttleer = {
+  timers: [],
+  caches: [],
+
+  throttle(fn) {
+    if (this.caches.indexOf(fn) === -1) {
+      // cache current handler
+      this.caches.push(fn); // save timer for current handler
+
+      this.timers.push(setTimeout(() => {
+        fn(); // empty cache and timer
+
+        this.caches.splice(this.caches.indexOf(fn), 1);
+        this.timers.shift();
+      }, config.system.throttleLimit));
+    }
+  },
+
+  reset() {
+    // reset all timers
+    this.timers.forEach(timer => {
+      clearTimeout(timer);
+    });
+    this.timers.length = 0; // empty caches
+
+    this.caches = [];
+  }
+
+};
+const loopTracker = {
+  isChecked: false,
+  timer: null,
+  times: 0,
+
+  track() {
+    // record track times
+    this.times += 1; // try to mark check status
+
+    clearTimeout(this.timer);
+    this.timer = setTimeout(() => {
+      this.isChecked = true;
+    }, config.system.loopCheckTimeout); // throw warning if the times of continuous calls large than the maximum times
+
+    if (this.times > config.system.loopCheckMaxCalls) {
+      error(ERRORS.INFINITE_LOOP);
+      this.isChecked = true;
+    }
+  }
+
+};
+const scrollBarStorage = {
+  key: '_infiniteScrollHeight',
+
+  getScrollElm(elm) {
+    return elm === window ? document.documentElement : elm;
+  },
+
+  save(elm) {
+    const target = this.getScrollElm(elm); // save scroll height on the scroll parent
+
+    target[this.key] = target.scrollHeight;
+  },
+
+  restore(elm) {
+    const target = this.getScrollElm(elm);
+    /* istanbul ignore else */
+
+    if (typeof target[this.key] === 'number') {
+      target.scrollTop = target.scrollHeight - target[this.key] + target.scrollTop;
+    }
+
+    this.remove(target);
+  },
+
+  remove(elm) {
+    if (elm[this.key] !== undefined) {
+      // remove scroll height
+      delete elm[this.key]; // eslint-disable-line no-param-reassign
+    }
+  }
+
+};
+/**
+ * kebab-case a camel-case string
+ * @param   {String}    str  source string
+ * @return  {String}
+ */
+
+function kebabCase(str) {
+  return str.replace(/[A-Z]/g, s => `-${s.toLowerCase()}`);
+}
+/**
+ * get visibility for element
+ * @param   {DOM}     elm
+ * @return  {Boolean}
+ */
+
+function isVisible(elm) {
+  return elm.offsetWidth + elm.offsetHeight > 0;
+}
+
+var script = /* #__PURE__ */(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+  name: 'InfiniteLoading',
+
+  data() {
+    return {
+      scrollParent: null,
+      scrollHandler: null,
+      isFirstLoad: true,
+      // save the current loading whether it is the first loading
+      status: STATUS.READY,
+      slots: config.slots
+    };
+  },
+
+  components: {
+    Spinner: script$1
+  },
+  emits: ['infinite', '$InfiniteLoading:loaded', '$InfiniteLoading:complete', '$InfiniteLoading:reset'],
+  computed: {
+    isShowSpinner() {
+      return this.status === STATUS.LOADING;
+    },
+
+    isShowError() {
+      return this.status === STATUS.ERROR;
+    },
+
+    isShowNoResults() {
+      return this.status === STATUS.COMPLETE && this.isFirstLoad;
+    },
+
+    isShowNoMore() {
+      return this.status === STATUS.COMPLETE && !this.isFirstLoad;
+    },
+
+    slotStyles() {
+      const styles = {};
+      Object.keys(config.slots).forEach(key => {
+        const name = kebabCase(key);
+
+        if ( // no slot and the configured default slot is not a Vue component
+        !this.$slots[name] && !config.slots[key].render || // has slot and slot is pure text node
+        this.$slots[name] && this.$slots[name]()[0].type === vue__WEBPACK_IMPORTED_MODULE_0__.Text) {
+          // only apply default styles for pure text slot
+          styles[key] = SLOT_STYLES;
+        }
+      });
+      return styles;
+    }
+
+  },
+  props: {
+    distance: {
+      type: Number,
+      default: config.props.distance
+    },
+    spinner: String,
+    direction: {
+      type: String,
+      default: 'bottom'
+    },
+    forceUseInfiniteWrapper: {
+      type: [Boolean, String],
+      default: config.props.forceUseInfiniteWrapper
+    },
+    identifier: {
+      default: +new Date()
+    }
+  },
+  watch: {
+    identifier() {
+      this.stateChanger.reset();
+    }
+
+  },
+
+  mounted() {
+    this.$watch('forceUseInfiniteWrapper', () => {
+      this.scrollParent = this.getScrollParent();
+    }, {
+      immediate: true
+    });
+
+    this.scrollHandler = ev => {
+      if (this.status === STATUS.READY) {
+        if (ev && ev.constructor === Event && isVisible(this.$el)) {
+          throttleer.throttle(this.attemptLoad);
+        } else {
+          this.attemptLoad();
+        }
+      }
+    };
+
+    setTimeout(() => {
+      this.scrollHandler();
+      this.scrollParent.addEventListener('scroll', this.scrollHandler, evt3rdArg);
+    }, 1);
+    eventHub.$on('$InfiniteLoading:loaded', () => {
+      this.isFirstLoad = false;
+
+      if (this.direction === 'top') {
+        // wait for DOM updated
+        this.$nextTick(() => {
+          scrollBarStorage.restore(this.scrollParent);
+        });
+      }
+
+      if (this.status === STATUS.LOADING) {
+        this.$nextTick(this.attemptLoad.bind(null, true));
+      }
+    });
+    eventHub.$on('$InfiniteLoading:complete', () => {
+      this.status = STATUS.COMPLETE; // force re-complation computed properties to fix the problem of get slot text delay
+
+      this.$nextTick(() => {
+        this.$forceUpdate();
+      });
+      this.scrollParent.removeEventListener('scroll', this.scrollHandler, evt3rdArg);
+    });
+    eventHub.$on('$InfiniteLoading:reset', () => {
+      this.status = STATUS.READY;
+      this.isFirstLoad = true;
+      scrollBarStorage.remove(this.scrollParent);
+      this.scrollParent.addEventListener('scroll', this.scrollHandler, evt3rdArg); // wait for list to be empty and the empty action may trigger a scroll event
+
+      setTimeout(() => {
+        throttleer.reset();
+        this.scrollHandler();
+      }, 1);
+    });
+    /**
+     * change state for this component, pass to the callback
+     */
+
+    this.stateChanger = {
+      loaded: () => {
+        this.$emit('$InfiniteLoading:loaded', {
+          target: this
+        });
+        eventHub.$emit('$InfiniteLoading:loaded', {
+          target: this
+        });
+      },
+      complete: () => {
+        this.$emit('$InfiniteLoading:complete', {
+          target: this
+        });
+        eventHub.$emit('$InfiniteLoading:complete', {
+          target: this
+        });
+      },
+      reset: () => {
+        this.$emit('$InfiniteLoading:reset', {
+          target: this
+        });
+        eventHub.$emit('$InfiniteLoading:reset', {
+          target: this
+        });
+      },
+      error: () => {
+        this.status = STATUS.ERROR;
+        throttleer.reset();
+      }
+    };
+
+    if (this.onInfinite) {
+      warn(WARNINGS.INFINITE_EVENT);
+    }
+  },
+
+  /**
+   * To adapt to keep-alive feature, but only work on Vue 2.2.0 and above, see: https://vuejs.org/v2/api/#keep-alive
+   */
+  deactivated() {
+    /* istanbul ignore else */
+    if (this.status === STATUS.LOADING) {
+      this.status = STATUS.READY;
+    }
+
+    this.scrollParent.removeEventListener('scroll', this.scrollHandler, evt3rdArg);
+  },
+
+  activated() {
+    this.scrollParent.addEventListener('scroll', this.scrollHandler, evt3rdArg);
+  },
+
+  methods: {
+    /**
+     * attempt trigger load
+     * @param {Boolean} isContinuousCall  the flag of continuous call, it will be true
+     *                                    if this method be called in the `loaded`
+     *                                    event handler
+     */
+    attemptLoad(isContinuousCall) {
+      if (this.status !== STATUS.COMPLETE && isVisible(this.$el) && this.getCurrentDistance() <= this.distance) {
+        this.status = STATUS.LOADING;
+
+        if (this.direction === 'top') {
+          // wait for spinner display
+          this.$nextTick(() => {
+            scrollBarStorage.save(this.scrollParent);
+          });
+        }
+
+        if (typeof this.onInfinite === 'function') {
+          this.onInfinite.call(null, this.stateChanger);
+        } else {
+          this.$emit('infinite', this.stateChanger);
+        }
+
+        if (isContinuousCall && !this.forceUseInfiniteWrapper && !loopTracker.isChecked) {
+          // check this component whether be in an infinite loop if it is not checked
+          // more details: https://github.com/PeachScript/vue-infinite-loading/issues/55#issuecomment-316934169
+          loopTracker.track();
+        }
+      } else if (this.status === STATUS.LOADING) {
+        this.status = STATUS.READY;
+      }
+    },
+
+    /**
+     * get current distance from the specified direction
+     * @return {Number}     distance
+     */
+    getCurrentDistance() {
+      let distance;
+
+      if (this.direction === 'top') {
+        distance = typeof this.scrollParent.scrollTop === 'number' ? this.scrollParent.scrollTop : this.scrollParent.pageYOffset;
+      } else {
+        const infiniteElmOffsetTopFromBottom = this.$el.getBoundingClientRect().top;
+        const scrollElmOffsetTopFromBottom = this.scrollParent === window ? window.innerHeight : this.scrollParent.getBoundingClientRect().bottom;
+        distance = infiniteElmOffsetTopFromBottom - scrollElmOffsetTopFromBottom;
+      }
+
+      return distance;
+    },
+
+    /**
+     * get the first scroll parent of an element
+     * @param  {DOM} elm    cache element for recursive search
+     * @return {DOM}        the first scroll parent
+     */
+    getScrollParent(elm = this.$el) {
+      let result;
+
+      if (typeof this.forceUseInfiniteWrapper === 'string') {
+        result = document.querySelector(this.forceUseInfiniteWrapper);
+      }
+
+      if (!result) {
+        if (elm.tagName === 'BODY') {
+          result = window;
+        } else if (!this.forceUseInfiniteWrapper && ['scroll', 'auto'].indexOf(getComputedStyle(elm).overflowY) > -1) {
+          result = elm;
+        } else if (elm.hasAttribute('infinite-wrapper') || elm.hasAttribute('data-infinite-wrapper')) {
+          result = elm;
+        }
+      }
+
+      return result || this.getScrollParent(elm.parentNode);
+    }
+
+  },
+
+  unmounted() {
+    /* istanbul ignore else */
+    if (!this.status !== STATUS.COMPLETE) {
+      throttleer.reset();
+      scrollBarStorage.remove(this.scrollParent);
+      this.scrollParent.removeEventListener('scroll', this.scrollHandler, evt3rdArg);
+    }
+  }
+
+});
+
+const _withId = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.withScopeId)("data-v-ce57e962");
+
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-ce57e962");
+
+const _hoisted_1 = {
+  class: "infinite-loading-container"
+};
+
+const _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("br", null, null, -1);
+
+(0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
+
+const render = /*#__PURE__*/_withId((_ctx, _cache, $props, $setup, $data, $options) => {
+  const _component_spinner = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("spinner");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    class: "infinite-status-prompt",
+    style: _ctx.slotStyles.spinner
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "spinner", {
+    isFirstLoad: _ctx.isFirstLoad
+  }, () => [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_spinner, {
+    spinner: _ctx.spinner
+  }, null, 8, ["spinner"])])], 4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.isShowSpinner]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    class: "infinite-status-prompt",
+    style: _ctx.slotStyles.noResults
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "no-results", {}, () => [_ctx.slots.noResults.render ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(_ctx.slots.noResults), {
+    key: 0
+  })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.slots.noResults), 1)], 64))])], 4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.isShowNoResults]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    class: "infinite-status-prompt",
+    style: _ctx.slotStyles.noMore
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "no-more", {}, () => [_ctx.slots.noMore.render ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(_ctx.slots.noMore), {
+    key: 0
+  })) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.slots.noMore), 1)], 64))])], 4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.isShowNoMore]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    class: "infinite-status-prompt",
+    style: _ctx.slotStyles.error
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "error", {
+    trigger: _ctx.attemptLoad
+  }, () => [_ctx.slots.error.render ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)((0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveDynamicComponent)(_ctx.slots.error), {
+    key: 0,
+    trigger: _ctx.attemptLoad
+  }, null, 8, ["trigger"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.slots.error) + " ", 1), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("button", {
+    class: "btn-try-infinite",
+    onClick: _cache[1] || (_cache[1] = (...args) => _ctx.attemptLoad && _ctx.attemptLoad(...args)),
+    textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.slots.errorBtnText)
+  }, null, 8, ["textContent"])], 64))])], 4), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, _ctx.isShowError]])]);
+});
+
+var css_248z = ".infinite-loading-container[data-v-ce57e962] {\n  clear: both;\n  text-align: center;\n}\n.infinite-loading-container[data-v-ce57e962] *[class^=loading-] {\n  display: inline-block;\n  margin: 5px 0;\n  width: 28px;\n  height: 28px;\n  font-size: 28px;\n  line-height: 28px;\n  border-radius: 50%;\n}\n.btn-try-infinite[data-v-ce57e962] {\n  margin-top: 5px;\n  padding: 5px 10px;\n  color: #999;\n  font-size: 14px;\n  line-height: 1;\n  background: transparent;\n  border: 1px solid #ccc;\n  border-radius: 3px;\n  outline: none;\n  cursor: pointer;\n}\n.btn-try-infinite[data-v-ce57e962]:not(:active):hover {\n  opacity: 0.8;\n}\n";
+styleInject(css_248z);
+
+script.render = render;
+script.__scopeId = "data-v-ce57e962";
+
+// Import vue component
+// IIFE injects install function into component, allowing component
+// to be registered via Vue.use() as well as Vue.component(),
+
+var entry_esm = /* #__PURE__ */(() => {
+  // Get component instance
+  const installable = script; // Attach install function executed by Vue.use()
+
+  installable.install = app => {
+    app.component('VueInfiniteLoading', installable);
+  };
+
+  return installable;
+})(); // It's possible to expose named exports when writing components that can
+// also be used as directives, etc. - eg. import { RollupDemoDirective } from 'rollup-demo';
+// export const RollupDemoDirective = directive;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (entry_esm);
+
 
 /***/ }),
 

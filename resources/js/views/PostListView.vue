@@ -1,10 +1,11 @@
 <script setup>
 import PostListTile from '../components/posts/PostListTile.vue';
+import InfiniteLoading from 'vue-infinite-loading';
 </script>
 
 <template>
   <main class="px-3">
-    <div class="grid wrap py-4">
+    <div class="grid wrap pt-4">
       <PostListTile
         v-for="post in posts"
         :key="post.id"
@@ -12,6 +13,10 @@ import PostListTile from '../components/posts/PostListTile.vue';
         :post="post"
       ></PostListTile>
     </div>
+    <InfiniteLoading class="w-full" @infinite="infiniteHandler">
+      <template #no-more><span></span></template>
+      <template #no-results><span></span></template>
+    </InfiniteLoading>
   </main>
 </template>
 
@@ -20,12 +25,28 @@ export default {
     data() {
         return {
             posts: [],
+            page: 1,
         };
     },
-    mounted() {
-        this.axios.get('/api/posts').then((response) => {
-            this.posts = response.data.data;
-        });
+    methods: {
+        infiniteHandler($state) {
+            this.axios
+                .get('/api/posts', {
+                    params: {
+                        page: this.page,
+                    },
+                })
+                .then((response) => {
+                    this.posts = this.posts.concat(response.data.data);
+                    const lastPage = response.data.meta.last_page;
+                    if (lastPage > this.page) {
+                        this.page += 1;
+                        $state.loaded();
+                    } else {
+                        $state.complete();
+                    }
+                });
+        },
     },
 };
 </script>
