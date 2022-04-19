@@ -2,7 +2,7 @@
 import Button from 'primevue/button';
 </script>
 <template>
-  <nav class="nav-bar shadow">
+  <nav class="nav-bar">
     <div>
       <Button class="p-button-text" @click="toggleSidebar()">
         <i class="fa-solid fa-bars fa-lg"></i>
