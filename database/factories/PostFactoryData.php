@@ -50,7 +50,6 @@ class PostFactoryData
         // 'https://dl.dropboxusercontent.com/s/hvlp603q5tc8pub/pendulum.js',
         'https://ms2n-xxx.com/js/CircularHelloCurves.js',
         'https://ms2n-xxx.com/js/CurlVoronoi.js',
-        'https://ms2n-xxx.com/js/light.js',
         'https://ms2n-xxx.com/js/metamon.js',
         'https://ms2n-xxx.com/js/PixelWormHole.js',
         'https://ms2n-xxx.com/js/planets.js',
