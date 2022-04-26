@@ -13,5 +13,5 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 700 ~/.ssh/id_rsa
-          ssh $SSH_USERNAME@$SSH_HOST -i ~/.ssh/id_rsa
+          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} -i ~/.ssh/id_rsa
           pwd
