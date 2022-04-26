@@ -1,22 +1,37 @@
 <script setup>
 import Button from 'primevue/button';
+import Sidebar from 'primevue/sidebar';
+import NavigationButton from './NavigationButtonComponent.vue';
 </script>
 <template>
   <nav class="nav-bar">
-    <Button
-      class="p-button p-button-secondary p-button-text p-button-raised p-button-xl"
-      icon="fa-solid fa-bars"
-      @click="toggleSidebar()"
-    />
+    <NavigationButton @click="visible = true" />
   </nav>
+  <Sidebar v-model:visible="visible" position="right">
+    <ul class="sidebar-content">
+      <li>
+        <router-link to="/" class="no-underline">
+          <Button class="p-button-text w-full" @click="visible = false">
+            <i class="fa-solid fa-house"></i> Home
+          </Button>
+        </router-link>
+      </li>
+      <li>
+        <router-link to="/posts" class="no-underline">
+          <Button class="p-button-text w-full" @click="visible = false">
+            <i class="fa-solid fa-flask"></i> Posts
+          </Button>
+        </router-link>
+      </li>
+    </ul>
+  </Sidebar>
 </template>
 <script>
 export default {
-    emits: ['toggle-sidebar'],
-    methods: {
-        toggleSidebar() {
-            this.$emit('toggle-sidebar');
-        },
+    data() {
+        return {
+            visible: false,
+        };
     },
 };
 </script>
@@ -28,14 +43,18 @@ export default {
   top: 0;
   right: 0;
   z-index: 99;
-  padding: 0.4rem;
+  padding: 0.5rem;
 }
 
-.p-button-xl {
-  font-size: 1.25rem;
-  height: 3.5rem;
-  width: 3.5rem;
-  border-radius: 50%;
+.sidebar-content {
+  padding: 0.5rem;
+  overflow-y: auto;
+  margin: 0;
+  height: 100%;
+  list-style: none;
+}
+
+.sidebar-content svg {
+  width: 2.5rem;
 }
 </style>
-
