@@ -4,5 +4,6 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-        echo "this is pen"
+      - name: Deploy to VPS
+        run: |
+          echo "this is pen"
