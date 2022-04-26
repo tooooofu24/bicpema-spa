@@ -3,17 +3,11 @@ import Button from 'primevue/button';
 </script>
 <template>
   <nav class="nav-bar">
-    <div>
-      <Button class="p-button-text" @click="toggleSidebar()">
-        <i class="fa-solid fa-bars fa-lg"></i>
-      </Button>
-    </div>
-    <div>
-      <span class="text-primary font-bold">BICPEMA</span>
-    </div>
-    <div>
-      <Button class="p-button-text"> <i class="fa-solid fa-user-large fa-lg"></i> </Button>
-    </div>
+    <Button
+      class="p-button p-button-secondary p-button-text p-button-raised p-button-xl"
+      icon="fa-solid fa-bars"
+      @click="toggleSidebar()"
+    />
   </nav>
 </template>
 <script>
@@ -29,19 +23,19 @@ export default {
 
 <style scoped>
 .nav-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  height: var(--navbar-height);
+  width: fit-content;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   z-index: 99;
-  padding: 0 0.5rem;
-  background: var(--surface-card);
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+  padding: 0.4rem;
+}
+
+.p-button-xl {
+  font-size: 1.25rem;
+  height: 3.5rem;
+  width: 3.5rem;
+  border-radius: 50%;
 }
 </style>
 

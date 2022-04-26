@@ -1,9 +1,10 @@
 <script setup>
 import Button from 'primevue/button';
+import Sidebar from 'primevue/sidebar';
 </script>
 
 <template>
-  <div class="sidebar">
+  <Sidebar v-model:visible="visible" position="right">
     <ul class="sidebar-content">
       <li>
         <router-link to="/" class="no-underline">
@@ -16,29 +17,35 @@ import Button from 'primevue/button';
         </router-link>
       </li>
     </ul>
-  </div>
+  </Sidebar>
 </template>
+<script>
+export default {
+    data() {
+        return {
+            visible: false,
+        };
+    },
+    watch: {
+        visible(visible) {
+            console.log(visible);
+        },
+    },
+    methods: {
+        showSidebar() {
+            this.visible = true;
+        },
+    },
+};
+</script>
 
 <style scoped>
-.sidebar {
-  position: fixed;
-  width: var(--sidebar-width);
-  height: 100%;
-  top: var(--navbar-height);
-  left: 0;
-  z-index: 98;
-  background-color: var(--surface-card);
-  border-right: 1px solid var(--surface-border);
-  transition: transform 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-}
-
 .sidebar-content {
+  padding: 0.5rem;
   overflow-y: auto;
   margin: 0;
   height: 100%;
-  padding: 1rem;
   list-style: none;
-  padding-bottom: 120px;
 }
 
 svg {

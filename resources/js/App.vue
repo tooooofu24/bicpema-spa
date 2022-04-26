@@ -4,8 +4,8 @@ import SidebarComponent from './components/SidebarComponent.vue';
 </script>
 <template>
   <Navigation @toggle-sidebar="showSidebar = !showSidebar"></Navigation>
-  <SidebarComponent v-show="showSidebar"></SidebarComponent>
-  <router-view class="router-view"></router-view>
+  <SidebarComponent ref="sidebar" @toggle-sidebar="showSidebar = !showSidebar"></SidebarComponent>
+  <router-view></router-view>
 </template>
 <script>
 export default {
@@ -14,11 +14,8 @@ export default {
             showSidebar: false,
         };
     },
+    mounted() {
+        console.log(this.$refs.sidebar.showSidebar);
+    },
 };
 </script>
-
-<style scoped>
-.router-view {
-  padding-top: var(--navbar-height);
-}
-</style>
