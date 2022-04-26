@@ -9,26 +9,26 @@ import isFullscreen from '../../functions/IsFullscreen';
     </router-link>
   </nav>
   <nav class="fullscreen-button">
-    <NavigationButton v-show="!fullscreen" icon="fa-solid fa-expand" @click="toggleScreen()" />
-    <NavigationButton v-show="fullscreen" icon="fa-solid fa-compress" @click="toggleScreen()" />
+    <NavigationButton v-show="!isFull" icon="fa-solid fa-expand" @click="toggle()" />
+    <NavigationButton v-show="isFull" icon="fa-solid fa-compress" @click="toggle()" />
   </nav>
 </template>
 <script>
+import { api as fullscreen } from 'vue-fullscreen';
 export default {
     data() {
         return {
-            fullscreen: false,
+            isFull: false,
         };
     },
     methods: {
-        toggleScreen() {
-            if (!isFullscreen()) {
-                document.body.requestFullscreen();
-                this.fullscreen = true;
-            } else {
-                document.exitFullscreen();
-                this.fullscreen = false;
-            }
+        async toggle() {
+            await fullscreen.toggle(document.body, {
+                teleport: true,
+                callback: (isFullscreen) => {
+                    this.isFull = isFullscreen;
+                },
+            });
         },
     },
 };
