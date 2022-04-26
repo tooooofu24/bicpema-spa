@@ -25314,7 +25314,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 var __default__ = {
   data: function data() {
     return {
-      isFull: false
+      isFull: vue_fullscreen__WEBPACK_IMPORTED_MODULE_1__.api.isFullscreen
     };
   },
   methods: {

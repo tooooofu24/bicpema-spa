@@ -18,7 +18,7 @@ import { api as fullscreen } from 'vue-fullscreen';
 export default {
     data() {
         return {
-            isFull: false,
+            isFull: fullscreen.isFullscreen,
         };
     },
     methods: {
