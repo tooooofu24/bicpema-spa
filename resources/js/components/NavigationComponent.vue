@@ -5,7 +5,7 @@ import NavigationButton from './NavigationButtonComponent.vue';
 </script>
 <template>
   <nav class="nav-bar">
-    <NavigationButton @click="visible = true" />
+    <NavigationButton icon="fa-solid fa-bars" @click="visible = true" />
   </nav>
   <Sidebar v-model:visible="visible" position="right">
     <ul class="sidebar-content">
