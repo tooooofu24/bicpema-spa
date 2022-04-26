@@ -8,10 +8,11 @@ jobs:
   Deploy-to-VPS:
     runs-on: ubuntu-latest
     steps:
-      - name: deploy
-        run: |
-          mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
-          chmod 700 ~/.ssh/id_rsa
-          ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} -i ~/.ssh/id_rsa
-          pwd
+      - name: Deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            pwd
