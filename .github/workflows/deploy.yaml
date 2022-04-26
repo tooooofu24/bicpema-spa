@@ -1,9 +1,5 @@
 name: learn-github-actions
 on: [push]
-env:
-  SSH_HOST: ${{ secrets.SSH_HOST }}
-  SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 jobs:
   Deploy-to-VPS:
     runs-on: ubuntu-latest
@@ -15,4 +11,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            pwd
+            cd ${{ secrets.SSH_DEPLOY_DIR }}
+            git pull origin master
