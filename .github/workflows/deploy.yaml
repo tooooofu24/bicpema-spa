@@ -1,7 +1,7 @@
 name: learn-github-actions
 on: [push]
 jobs:
-  Deploy to VPS:
+  Deploy-to-VPS:
     runs-on: ubuntu-latest
     env:
       SSH_HOST: ${{ secrets.SSH_HOST }}
