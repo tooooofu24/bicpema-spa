@@ -25255,14 +25255,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/button.esm.js");
-/* harmony import */ var primevue_sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/sidebar */ "./node_modules/primevue/sidebar/sidebar.esm.js");
-/* harmony import */ var _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NavigationButtonComponent.vue */ "./resources/js/components/NavigationButtonComponent.vue");
+/* harmony import */ var vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-fullscreen */ "./node_modules/vue-fullscreen/dist/vue-fullscreen.min.js");
+/* harmony import */ var vue_fullscreen__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/button.esm.js");
+/* harmony import */ var primevue_sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/sidebar */ "./node_modules/primevue/sidebar/sidebar.esm.js");
+/* harmony import */ var _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NavigationButtonComponent.vue */ "./resources/js/components/NavigationButtonComponent.vue");
+
 var __default__ = {
   data: function data() {
     return {
-      visible: false
+      visible: false,
+      isFull: vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api.isFullscreen
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    window.addEventListener('resize', function () {
+      setTimeout(function () {
+        _this.isFull = vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api.isFullscreen;
+      }, 150);
+    });
   }
 };
 
@@ -25273,9 +25286,10 @@ var __default__ = {
     var expose = _ref.expose;
     expose();
     var __returned__ = {
-      Button: primevue_button__WEBPACK_IMPORTED_MODULE_0__["default"],
-      Sidebar: primevue_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"],
-      NavigationButton: _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+      fullscreen: vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api,
+      Button: primevue_button__WEBPACK_IMPORTED_MODULE_1__["default"],
+      Sidebar: primevue_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
+      NavigationButton: _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -25303,7 +25317,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_fullscreen__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-fullscreen */ "./node_modules/vue-fullscreen/dist/vue-fullscreen.min.js");
 /* harmony import */ var vue_fullscreen__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_fullscreen__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../NavigationButtonComponent.vue */ "./resources/js/components/NavigationButtonComponent.vue");
-/* harmony import */ var _functions_IsFullscreen__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../functions/IsFullscreen */ "./resources/js/functions/IsFullscreen.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -25345,15 +25358,13 @@ var __default__ = {
   }
 };
 
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/Object.assign(__default__, {
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var __returned__ = {
       fullscreen: vue_fullscreen__WEBPACK_IMPORTED_MODULE_1__.api,
-      NavigationButton: _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
-      isFullscreen: _functions_IsFullscreen__WEBPACK_IMPORTED_MODULE_3__["default"]
+      NavigationButton: _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -25609,12 +25620,14 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNod
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavigationButton"], {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavigationButton"], {
     icon: "fa-solid fa-bars",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $data.visible = true;
     })
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Sidebar"], {
+  })], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.isFull]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Sidebar"], {
     visible: $data.visible,
     "onUpdate:visible": _cache[3] || (_cache[3] = function ($event) {
       return $data.visible = $event;
@@ -25707,7 +25720,7 @@ var _hoisted_2 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
     to: "/posts",
     "class": "no-underline"
   }, {
@@ -25719,7 +25732,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavigationButton"], {
+  })], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.isFull]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavigationButton"], {
     icon: "fa-solid fa-expand",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.toggle();
@@ -26010,27 +26025,6 @@ app.use(_router__WEBPACK_IMPORTED_MODULE_13__["default"]);
 app.use(primevue_config__WEBPACK_IMPORTED_MODULE_2__["default"]);
 app.use(vue_axios__WEBPACK_IMPORTED_MODULE_1__["default"], (axios__WEBPACK_IMPORTED_MODULE_0___default()));
 app.mount('#app');
-
-/***/ }),
-
-/***/ "./resources/js/functions/IsFullscreen.js":
-/*!************************************************!*\
-  !*** ./resources/js/functions/IsFullscreen.js ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* export default binding */ __WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
-  if (document.fullscreenElement && document.exitFullscreen) {
-    return true;
-  }
-
-  return false;
-}
 
 /***/ }),
 

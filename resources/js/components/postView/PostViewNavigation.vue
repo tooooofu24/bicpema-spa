@@ -1,9 +1,8 @@
 <script setup>
 import NavigationButton from '../NavigationButtonComponent.vue';
-import isFullscreen from '../../functions/IsFullscreen';
 </script>
 <template>
-  <nav class="back-button">
+  <nav v-show="!isFull" class="back-button">
     <router-link to="/posts" class="no-underline">
       <NavigationButton icon="fa-solid fa-angle-left" />
     </router-link>
