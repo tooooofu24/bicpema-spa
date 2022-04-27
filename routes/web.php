@@ -20,3 +20,7 @@ Route::get('iframe/posts/{id}', IframeController::class);
 Route::get('/{any}', function () {
     return view('app');
 })->where('any', '.*');
+
+Route::get('/', function () {
+    return view('app');
+})->name('index');

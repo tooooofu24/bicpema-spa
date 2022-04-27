@@ -5,7 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <title>BICPEMA</title>
+
+    <meta property="og:url" content="{{ route('index') }}" />
+    <meta property="og:title" content="BICPEMA" />
+    <meta property="og:description" content="実験実行サイト" />
+    <meta property="og:image" content="{{ asset('images/top-page.jpg') }}" />
+    <meta property="og:site_name" content="BICPEMA" />
+    <meta property="og:locale" content="ja_JP" />
 
     <!-- Styles -->
     <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
