@@ -25187,14 +25187,37 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _components_NavigationComponent_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/NavigationComponent.vue */ "./resources/js/components/NavigationComponent.vue");
+/* harmony import */ var vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-fullscreen */ "./node_modules/vue-fullscreen/dist/vue-fullscreen.min.js");
+/* harmony import */ var vue_fullscreen__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_NavigationComponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/NavigationComponent.vue */ "./resources/js/components/NavigationComponent.vue");
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+var __default__ = {
+  provide: function provide() {
+    var _this = this;
+
+    return {
+      isFullscreen: function isFullscreen() {
+        return _this.isFullscreen;
+      },
+      toggleScreen: function toggleScreen() {
+        _this.isFullscreen = !_this.isFullscreen;
+      }
+    };
+  },
+  data: function data() {
+    return {
+      isFullscreen: vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api.isFullscreen
+    };
+  }
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (/*#__PURE__*/Object.assign(__default__, {
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
     var __returned__ = {
-      Navigation: _components_NavigationComponent_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+      fullscreen: vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api,
+      Navigation: _components_NavigationComponent_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -25202,7 +25225,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     return __returned__;
   }
-});
+}));
 
 /***/ }),
 
@@ -25255,27 +25278,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-fullscreen */ "./node_modules/vue-fullscreen/dist/vue-fullscreen.min.js");
-/* harmony import */ var vue_fullscreen__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/button.esm.js");
-/* harmony import */ var primevue_sidebar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! primevue/sidebar */ "./node_modules/primevue/sidebar/sidebar.esm.js");
-/* harmony import */ var _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NavigationButtonComponent.vue */ "./resources/js/components/NavigationButtonComponent.vue");
-
+/* harmony import */ var primevue_button__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! primevue/button */ "./node_modules/primevue/button/button.esm.js");
+/* harmony import */ var primevue_sidebar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! primevue/sidebar */ "./node_modules/primevue/sidebar/sidebar.esm.js");
+/* harmony import */ var _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NavigationButtonComponent.vue */ "./resources/js/components/NavigationButtonComponent.vue");
 var __default__ = {
+  inject: ['isFullscreen'],
   data: function data() {
     return {
-      visible: false,
-      isFull: vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api.isFullscreen
+      visible: false
     };
-  },
-  created: function created() {
-    var _this = this;
-
-    window.addEventListener('resize', function () {
-      setTimeout(function () {
-        _this.isFull = vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api.isFullscreen;
-      }, 150);
-    });
   }
 };
 
@@ -25286,10 +25297,9 @@ var __default__ = {
     var expose = _ref.expose;
     expose();
     var __returned__ = {
-      fullscreen: vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api,
-      Button: primevue_button__WEBPACK_IMPORTED_MODULE_1__["default"],
-      Sidebar: primevue_sidebar__WEBPACK_IMPORTED_MODULE_2__["default"],
-      NavigationButton: _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+      Button: primevue_button__WEBPACK_IMPORTED_MODULE_0__["default"],
+      Sidebar: primevue_sidebar__WEBPACK_IMPORTED_MODULE_1__["default"],
+      NavigationButton: _NavigationButtonComponent_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -25325,11 +25335,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 var __default__ = {
-  data: function data() {
-    return {
-      isFull: vue_fullscreen__WEBPACK_IMPORTED_MODULE_1__.api.isFullscreen
-    };
-  },
+  inject: ['isFullscreen', 'toggleScreen'],
   methods: {
     toggle: function toggle() {
       var _this = this;
@@ -25343,7 +25349,7 @@ var __default__ = {
                 return vue_fullscreen__WEBPACK_IMPORTED_MODULE_1__.api.toggle(document.body, {
                   teleport: true,
                   callback: function callback(isFullscreen) {
-                    _this.isFull = isFullscreen;
+                    _this.toggleScreen();
                   }
                 });
 
@@ -25627,7 +25633,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   })], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.isFull]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Sidebar"], {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$options.isFullscreen()]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Sidebar"], {
     visible: $data.visible,
     "onUpdate:visible": _cache[3] || (_cache[3] = function ($event) {
       return $data.visible = $event;
@@ -25734,21 +25740,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   })], 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.isFull]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavigationButton"], {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$options.isFullscreen()]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("nav", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavigationButton"], {
     icon: "fa-solid fa-expand",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $options.toggle();
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$data.isFull]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavigationButton"], {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, !$options.isFullscreen()]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["NavigationButton"], {
     icon: "fa-solid fa-compress",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.toggle();
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $data.isFull]])])], 64
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $options.isFullscreen()]])])], 64
   /* STABLE_FRAGMENT */
   );
 }

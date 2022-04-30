@@ -4,7 +4,7 @@ import Sidebar from 'primevue/sidebar';
 import NavigationButton from './NavigationButtonComponent.vue';
 </script>
 <template>
-  <nav v-show="!isFull" class="nav-bar">
+  <nav v-show="!isFullscreen()" class="nav-bar">
     <NavigationButton icon="fa-solid fa-bars" @click="visible = true" />
   </nav>
   <Sidebar v-model:visible="visible" position="right">
@@ -27,20 +27,12 @@ import NavigationButton from './NavigationButtonComponent.vue';
   </Sidebar>
 </template>
 <script>
-import { api as fullscreen } from 'vue-fullscreen';
 export default {
+    inject: ['isFullscreen'],
     data() {
         return {
             visible: false,
-            isFull: fullscreen.isFullscreen,
         };
-    },
-    created: function () {
-        window.addEventListener('resize', () => {
-            setTimeout(() => {
-                this.isFull = fullscreen.isFullscreen;
-            }, 150);
-        });
     },
 };
 </script>
