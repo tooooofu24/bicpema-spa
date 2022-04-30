@@ -20,7 +20,7 @@ export default {
     data() {
         return {
             isFullscreen: fullscreen.isFullscreen,
-            isVertical: window.innerWidth < window.innerHeight,
+            isVertical: document.body.clientWidth < document.body.clientHeight,
         };
     },
     created() {
@@ -31,7 +31,7 @@ export default {
     },
     methods: {
         resizeWindow(e) {
-            this.isVertical = window.innerWidth < window.innerHeight;
+            this.isVertical = document.body.clientWidth < document.body.clientHeight;
         },
     },
 };

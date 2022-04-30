@@ -25210,7 +25210,7 @@ var __default__ = {
   data: function data() {
     return {
       isFullscreen: vue_fullscreen__WEBPACK_IMPORTED_MODULE_0__.api.isFullscreen,
-      isVertical: window.innerWidth < window.innerHeight
+      isVertical: document.body.clientWidth < document.body.clientHeight
     };
   },
   created: function created() {
@@ -25221,7 +25221,7 @@ var __default__ = {
   },
   methods: {
     resizeWindow: function resizeWindow(e) {
-      this.isVertical = window.innerWidth < window.innerHeight;
+      this.isVertical = document.body.clientWidth < document.body.clientHeight;
     }
   }
 };
