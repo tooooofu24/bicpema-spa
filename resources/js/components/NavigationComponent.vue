@@ -23,6 +23,11 @@ import NavigationButton from './NavigationButtonComponent.vue';
           </Button>
         </router-link>
       </li>
+      <li>
+        <router-link to="/posts/create" class="no-underline">
+          <Button class="p-button-text w-full" @click="visible = false"> <i class="fa-solid fa-plus"></i> New </Button>
+        </router-link>
+      </li>
     </ul>
   </Sidebar>
 </template>

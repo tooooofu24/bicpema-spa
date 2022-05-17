@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" ontouchstart="">
         <main-view></main-view>
     </div>
 
