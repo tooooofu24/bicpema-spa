@@ -13,4 +13,4 @@ jobs:
           script: |
             cd ${{ secrets.SSH_DEPLOY_DIR }}
             git pull origin master
-            php artisan migrate:fresh --seed
+            php artisan migrate:fresh --seed --force
