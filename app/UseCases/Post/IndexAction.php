@@ -11,7 +11,7 @@ class IndexAction
     public function __invoke(IndexRequest $request)
     {
         $query = Post::query()
-            ->latest();
+            ->orderBy('id', 'desc');
         return PostResource::collection($query->paginate());
     }
 }
