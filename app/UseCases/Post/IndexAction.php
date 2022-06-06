@@ -10,7 +10,8 @@ class IndexAction
 {
     public function __invoke(IndexRequest $request)
     {
-        $query = Post::query();
+        $query = Post::query()
+            ->latest();
         return PostResource::collection($query->paginate());
     }
 }
