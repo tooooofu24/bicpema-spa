@@ -29,6 +29,7 @@ class PostSeeder extends Seeder
             ['title' => '凸レンズと凹レンズ', 'file_url' => 'https://dl.dropboxusercontent.com/s/3b2osaicqxunl0y/lens.js', 'thumbnail_url' => 'https://live.staticflickr.com/65535/52074425211_920f763070_o.png', 'share_link_url' => 'https://github.com/ohiaeni/physics_simulations_processing.git', 'comment' => '凸レンズと凹レンズのシミュレーション教材です。', 'area_id' => 17, 'user_id' => 2],
             ['title' => '貝殻の螺旋', 'file_url' => 'https://dl.dropboxusercontent.com/s/zg03v2ucoit9a2x/makigai.js', 'thumbnail_url' => 'https://live.staticflickr.com/65535/52104383713_28e803e499_o.png', 'share_link_url' => 'https://github.com/ohiaeni/physics_simulations_processing.git', 'comment' => '貝殻の螺旋のシミュレーション教材です。', 'area_id' => 56, 'user_id' => 2],
             ['title' => '光の反射と屈折', 'file_url' => 'https://dl.dropboxusercontent.com/s/0syurx8cqt26q45/refraction.js', 'thumbnail_url' => 'https://live.staticflickr.com/65535/52116929474_466ccf79f2_o.png', 'share_link_url' => 'https://github.com/ohiaeni/physics_simulations_processing.git', 'comment' => '光の屈折と反射のシミュレーション教材です。', 'area_id' => 20, 'user_id' => 2],
+            ['title' => '光の反射と屈折', 'file_url' => 'https://dl.dropboxusercontent.com/s/0syurx8cqt26q45/refraction.js', 'thumbnail_url' => 'https://live.staticflickr.com/65535/52116929474_466ccf79f2_o.png', 'share_link_url' => 'https://github.com/ohiaeni/physics_simulations_processing.git', 'comment' => '光の屈折と反射のシミュレーション教材です。', 'area_id' => 20, 'user_id' => 2],
         );
         Post::factory()->count(100)->create();
         Post::insert($posts);

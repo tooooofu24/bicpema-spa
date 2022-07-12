@@ -20,3 +20,13 @@ https://bicpema.ms2n-xxx.com/
 - [p5.js](https://p5js.org/)
 - Vue.js(Vue3)
 - [PrimeVue](https://www.primefaces.org/primevue/)
+
+## シードデータの追加方法
+`database\seeders\PostSeeder.php`を編集
+```
+git add .
+git commit -m "コミットメッセージ"
+git push origin master
+```
+https://bicpema.ms2n-xxx.com/posts
+で追加されているか確認
